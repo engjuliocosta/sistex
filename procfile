@@ -1,1 +1,2 @@
-Commit de alterações para Heroku
+web: gunicorn sistex.wsgi --log-file -
+
