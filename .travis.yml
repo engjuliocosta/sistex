@@ -10,12 +10,14 @@ python:
 
 env:
   global:
+    - system
     - PIPENV_VENV_IN_PROJECT=1
     - PIPENV_IGNORE_VIRTUALENVS=1
 
 install: :
   - pip install pipenv
   - pip install sync -d
+  - pip install requirements.txt
 
 script:
   - pipenv run falke8
