@@ -1,2 +1,2 @@
-web: gunicorn sistex.wsgi --log-file -
+web: gunicorn sistex.wsgi.application --log-file -
 

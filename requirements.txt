@@ -1,0 +1,12 @@
+django = "*"
+flake8 = "*"
+pytest-django = "*"
+travis = "*"
+pyupio = "*"
+
+[dev-packages]
+pytest-cov = "*"
+codecov = "*"
+
+[requires]
+python_version = "3.8"
