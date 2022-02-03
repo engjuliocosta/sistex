@@ -9,11 +9,12 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 from functools import partial
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from decouple import config
+from decouple import Csv, config
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'sistex.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-defaul_db_url = 'sqlite:///'+ os.path.join(BASE_DIR, 'db.sqlite3')
+default_db_url = 'sqlite:///'+ os.path.join(BASE_DIR, 'db.sqlite3')
 
 parse_database = partial(dj_database_url.parse, conn_max_age=600)
 
