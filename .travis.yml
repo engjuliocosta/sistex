@@ -17,7 +17,7 @@ env:
 install: :
   - pip install pipenv
   - pip install sync -d
-  - pip install requirements.txt
+  - cp contrib/env-sample .env
 
 script:
   - pipenv run falke8
