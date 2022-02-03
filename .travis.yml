@@ -8,6 +8,11 @@ python:
   - 3.9
   - 3.10
 
+services:
+  postgresql
+addons:
+  postgresql: '9.5'
+
 env:
   global:
     - system
@@ -19,6 +24,8 @@ install: :
   - pip install sync -d
   - cp contrib/env-sample .env
 
+before_script:
+  - psql -c "CREATE DATABASE testdb" -U postgres
 script:
   - pipenv run falke8
   - pipenv run pytest --cov=sistex
