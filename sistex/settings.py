@@ -31,6 +31,7 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv()) #["*"] COLOCAR O SITE DA PYGEOPRO AQUI COM O HEROKU
 
+AUTH_USER_MODEL = 'base.User'
 
 # Application definition
 
