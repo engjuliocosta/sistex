@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import gettext_lazy as _
-from time import timezone
-from django.core.mail import send_email
+from django.utils import timezone
+from django.core.mail import send_mail
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -38,15 +38,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     """
     App base User class
     """
-    first_name = models.Charfield(_('first name'), max_length=30, blank=True)
+    first_name = models.CharField(_('first name'), max_length=30, blank=True)
     email = models.EmailField(_('email adress'), unique=True)
-    is_staff = models.BoleanField(
+    is_staff = models.BooleanField(
         _('staff status'),
         default=False,
         help_text=_('Designates wheter the user can log into this admin site'),
     )
 
-    is_active = models.BoleanField(
+    is_active = models.BooleanField(
         _('active'),
         default=True,
         help_text=_(
@@ -61,7 +61,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = []
 
     class Meta:
         verbose_name = _('user')
@@ -72,13 +72,13 @@ class User(AbstractBaseUser, PermissionsMixin):
             self.email = self.__class__.objects.normalize_email(self.email)
 
         def get_full_name(self):
-            full_name = '%s' % (self.first_name)
+            full_name = '%s' %(self.first_name)
             return full_name.strip()
 
         def get_short_name(self):
             return self.first_name
 
         def email_user(self, subject, message, from_email=None, **kwargs):
-            send_email(subject, message, from_email, [self.email], **kwargs)
+            send_mail(subject, message, from_email, [self.email], **kwargs)
 
 
